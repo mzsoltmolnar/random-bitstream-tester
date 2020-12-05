@@ -12,8 +12,6 @@ The algorithms are based on the ANSI C code of the [NIST Statistical Test Suite]
 
 - [**Bootstrap v4.5.3**](https://getbootstrap.com/)
 
-- [**Math.js**](https://mathjs.org/index.html)
-
 - **VS Code**
 
   <hr>
