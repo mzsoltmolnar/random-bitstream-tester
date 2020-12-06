@@ -2,7 +2,7 @@
 
 ## Online Website
 
-The tests can [be accessed online here](https://mzsoltmolnar.github.io/random-bitstream-tester/)
+The random bit sequence tester can [be accessed here](https://mzsoltmolnar.github.io/random-bitstream-tester/)
 
 ## About
 
