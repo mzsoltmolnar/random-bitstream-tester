@@ -19,19 +19,22 @@ var preprocessor = new SequencePreprocessor("");
 var selectedInput = "";
 
 function insertRadRandNum() {
-    resetIndicators();
+    resetInputStreamIndicator();
+    resetTestIndicators();
     preprocessor = new SequencePreprocessor(RandomStringsData.randomRADString);
     $("#pureInputBits").html(preprocessor.sequenceString);
 }
 
 function insertAdcRandNum() {
-    resetIndicators();
+    resetInputStreamIndicator();
+    resetTestIndicators();
     preprocessor = new SequencePreprocessor(RandomStringsData.randomADCString);
     $("#pureInputBits").html(preprocessor.sequenceString);
 }
 
 function generateRandNum() {
-    resetIndicators();
+    resetInputStreamIndicator();
+    resetTestIndicators();
     let randString = "";
     for (let i = 0; i < 1000000; i++) {
         if (Math.random() < 0.5) {
@@ -45,7 +48,8 @@ function generateRandNum() {
 }
 
 function insertManualInput() {
-    resetIndicators();
+    resetInputStreamIndicator();
+    resetTestIndicators();
     let inputText = $("#manualRandNumbersText").val();
 
     preprocessor = new SequencePreprocessor(inputText);
@@ -56,12 +60,13 @@ function insertManualInput() {
 }
 
 function startTests() {
-    resetIndicators();
+    resetTestIndicators();
     executeTests(preprocessor.array);
 }
 
 function bitstreamInputChanged() {
-    resetIndicators();
+    resetInputStreamIndicator();
+    resetTestIndicators();
     selectedInput = $("input[name='bitstreamInput']:checked").val();
 
     if (selectedInput === "radRNG") {
@@ -359,9 +364,11 @@ async function executeTests(array) {
     return failedTestCount;
 }
 
-function resetIndicators() {
+function resetInputStreamIndicator() {
     $("#pureInputBits").html("");
+}
 
+function resetTestIndicators() {
     setBadgeNA("test_1_indicator");
     setPValue("test_1_value", "");
 
