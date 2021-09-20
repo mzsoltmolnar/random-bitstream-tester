@@ -1,5 +1,9 @@
 # Random Bitstream Tester
 
+## Online Website
+
+The random bit sequence tester can [be accessed here](https://mzsoltmolnar.github.io/random-bitstream-tester/) (Demo video included on the tester's website)
+
 ## About
 
 An online tool to test the quality of random bitstreams according to [NIST standards](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-22r1a.pdf).
