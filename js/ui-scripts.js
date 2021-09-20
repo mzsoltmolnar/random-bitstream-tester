@@ -111,7 +111,7 @@ async function executeTests(array) {
         if (stopIfError) { return; }
     } else {
         setPValue("test_1_value", test_1_res.pValue);
-        if (test_1_res.pValue >= threshold && test_1_res.pValue <= 1) {
+        if (test_1_res.pValue >= threshold && test_1_res.pValue <= 1 && !test_1_res.pValueOutOfRange) {
             setBadgePassed("test_1_indicator");
         } else {
             setBadgeFailed("test_1_indicator");
@@ -129,7 +129,7 @@ async function executeTests(array) {
         if (stopIfError) { return; }
     } else {
         setPValue("test_2_value", test_2_res.pValue);
-        if (test_2_res.pValue >= threshold && test_2_res.pValue <= 1) {
+        if (test_2_res.pValue >= threshold && test_2_res.pValue <= 1 && !test_2_res.pValueOutOfRange) {
             setBadgePassed("test_2_indicator");
         } else {
             setBadgeFailed("test_2_indicator");
@@ -147,7 +147,7 @@ async function executeTests(array) {
         if (stopIfError) { return; }
     } else {
         setPValue("test_3_value", test_3_res.pValue);
-        if (test_3_res.pValue >= threshold && test_3_res.pValue <= 1) {
+        if (test_3_res.pValue >= threshold && test_3_res.pValue <= 1 && !test_3_res.pValueOutOfRange) {
             setBadgePassed("test_3_indicator");
         } else {
             setBadgeFailed("test_3_indicator");
@@ -165,7 +165,7 @@ async function executeTests(array) {
         if (stopIfError) { return; }
     } else {
         setPValue("test_4_value", test_4_res.pValue);
-        if (test_4_res.pValue >= threshold && test_4_res.pValue <= 1) {
+        if (test_4_res.pValue >= threshold && test_4_res.pValue <= 1 && !test_4_res.pValueOutOfRange) {
             setBadgePassed("test_4_indicator");
         } else {
             setBadgeFailed("test_4_indicator");
@@ -183,7 +183,7 @@ async function executeTests(array) {
         if (stopIfError) { return; }
     } else {
         setPValue("test_5_value", test_5_res.pValue);
-        if (test_5_res.pValue >= threshold && test_5_res.pValue <= 1) {
+        if (test_5_res.pValue >= threshold && test_5_res.pValue <= 1 && !test_5_res.pValueOutOfRange) {
             setBadgePassed("test_5_indicator");
         } else {
             setBadgeFailed("test_5_indicator");
@@ -201,7 +201,7 @@ async function executeTests(array) {
         if (stopIfError) { return; }
     } else {
         setPValue("test_6_value", test_6_res.pValue);
-        if (test_6_res.pValue >= threshold && test_6_res.pValue <= 1) {
+        if (test_6_res.pValue >= threshold && test_6_res.pValue <= 1 && !test_6_res.pValueOutOfRange) {
             setBadgePassed("test_6_indicator");
         } else {
             setBadgeFailed("test_6_indicator");
@@ -219,7 +219,7 @@ async function executeTests(array) {
         if (stopIfError) { return; }
     } else {
         setPValue("test_7_value", test_7_res.pValue);
-        if (test_7_res.pValue >= threshold && test_7_res.pValue <= 1) {
+        if (test_7_res.pValue >= threshold && test_7_res.pValue <= 1 && !test_7_res.pValueOutOfRange) {
             setBadgePassed("test_7_indicator");
         } else {
             setBadgeFailed("test_7_indicator");
@@ -237,7 +237,7 @@ async function executeTests(array) {
         if (stopIfError) { return; }
     } else {
         setPValue("test_8_value", test_8_res.pValue);
-        if (test_8_res.pValue >= threshold && test_8_res.pValue <= 1) {
+        if (test_8_res.pValue >= threshold && test_8_res.pValue <= 1 && !test_8_res.pValueOutOfRange) {
             setBadgePassed("test_8_indicator");
         } else {
             setBadgeFailed("test_8_indicator");
@@ -255,7 +255,7 @@ async function executeTests(array) {
         if (stopIfError) { return; }
     } else {
         setPValue("test_9_value", test_9_res.pValue);
-        if (test_9_res.pValue >= threshold && test_9_res.pValue <= 1) {
+        if (test_9_res.pValue >= threshold && test_9_res.pValue <= 1 && !test_9_res.pValueOutOfRange) {
             setBadgePassed("test_9_indicator");
         } else {
             setBadgeFailed("test_9_indicator");
@@ -292,7 +292,7 @@ async function executeTests(array) {
         if (stopIfError) { return; }
     } else {
         setPValue("test_11_value", test_11_res.pValue);
-        if (test_11_res.pValue >= threshold && test_11_res.pValue <= 1) {
+        if (test_11_res.pValue >= threshold && test_11_res.pValue <= 1 && !test_11_res.pValueOutOfRange) {
             setBadgePassed("test_11_indicator");
         } else {
             setBadgeFailed("test_11_indicator");
