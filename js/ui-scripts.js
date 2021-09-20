@@ -100,11 +100,13 @@ async function executeTests(array) {
     let randTest = new RandomTests(array);
     let threshold = 0.01;
     let stopIfFailed = false;
+    let stopIfError = false;
     let isOneTestFailed = false;
 
     let test_1_res = randTest.frequencyTest();
     if (test_1_res.isError) {
         setBadgeError("test_1_indicator");
+        if (stopIfError) { return; }
     } else {
         setPValue("test_1_value", test_1_res.pValue);
         if (test_1_res.pValue >= threshold && test_1_res.pValue <= 1) {
@@ -118,160 +120,225 @@ async function executeTests(array) {
 
     await sleep(300);
 
-    let test_2_res = randTest.frequencyTestBlock().pValue;
-    setPValue("test_2_value", test_2_res);
-    if (test_2_res >= threshold && test_2_res <= 1) {
-        setBadgePassed("test_2_indicator");
+    let test_2_res = randTest.frequencyTestBlock();
+    if (test_2_res.isError) {
+        setBadgeError("test_2_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_2_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_2_value", test_2_res.pValue);
+        if (test_2_res.pValue >= threshold && test_2_res.pValue <= 1) {
+            setBadgePassed("test_2_indicator");
+        } else {
+            setBadgeFailed("test_2_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
-    let test_3_res = randTest.runsTest().pValue;
-    setPValue("test_3_value", test_3_res);
-    if (test_3_res >= threshold && test_3_res <= 1) {
-        setBadgePassed("test_3_indicator");
+    let test_3_res = randTest.runsTest();
+    if (test_3_res.isError) {
+        setBadgeError("test_3_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_3_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_3_value", test_3_res.pValue);
+        if (test_3_res.pValue >= threshold && test_3_res.pValue <= 1) {
+            setBadgePassed("test_3_indicator");
+        } else {
+            setBadgeFailed("test_3_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
-    let test_4_res = randTest.longestRunOfOnesTest().pValue;
-    setPValue("test_4_value", test_4_res);
-    if (test_4_res >= threshold && test_4_res <= 1) {
-        setBadgePassed("test_4_indicator");
+    let test_4_res = randTest.longestRunOfOnesTest();
+    if (test_4_res.isError) {
+        setBadgeError("test_4_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_4_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_4_value", test_4_res.pValue);
+        if (test_4_res.pValue >= threshold && test_4_res.pValue <= 1) {
+            setBadgePassed("test_4_indicator");
+        } else {
+            setBadgeFailed("test_4_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
-    let test_5_res = randTest.binaryMatrixRankTest().pValue;
-    setPValue("test_5_value", test_5_res);
-    if (test_5_res >= threshold && test_5_res <= 1) {
-        setBadgePassed("test_5_indicator");
+    let test_5_res = randTest.binaryMatrixRankTest();
+    if (test_5_res.isError) {
+        setBadgeError("test_5_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_5_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_5_value", test_5_res.pValue);
+        if (test_5_res.pValue >= threshold && test_5_res.pValue <= 1) {
+            setBadgePassed("test_5_indicator");
+        } else {
+            setBadgeFailed("test_5_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
-    let test_6_res = randTest.nonOverlappingTemplateMatchingsTest().pValue;
-    setPValue("test_6_value", test_6_res);
-    if (test_6_res >= threshold && test_6_res <= 1) {
-        setBadgePassed("test_6_indicator");
+    let test_6_res = randTest.nonOverlappingTemplateMatchingsTest();
+    if (test_6_res.isError) {
+        setBadgeError("test_6_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_6_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_6_value", test_6_res.pValue);
+        if (test_6_res.pValue >= threshold && test_6_res.pValue <= 1) {
+            setBadgePassed("test_6_indicator");
+        } else {
+            setBadgeFailed("test_6_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
-    let test_7_res = randTest.overlappingTemplateMatchingTest().pValue;
-    setPValue("test_7_value", test_7_res);
-    if (test_7_res >= threshold && test_7_res <= 1) {
-        setBadgePassed("test_7_indicator");
+    let test_7_res = randTest.overlappingTemplateMatchingTest();
+    if (test_7_res.isError) {
+        setBadgeError("test_7_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_7_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_7_value", test_7_res.pValue);
+        if (test_7_res.pValue >= threshold && test_7_res.pValue <= 1) {
+            setBadgePassed("test_7_indicator");
+        } else {
+            setBadgeFailed("test_7_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
-    let test_8_res = randTest.universalMaurerTest().pValue;
-    setPValue("test_8_value", test_8_res);
-    if (test_8_res >= threshold && test_8_res <= 1) {
-        setBadgePassed("test_8_indicator");
+    let test_8_res = randTest.universalMaurerTest();
+    if (test_8_res.isError) {
+        setBadgeError("test_8_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_8_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_8_value", test_8_res.pValue);
+        if (test_8_res.pValue >= threshold && test_8_res.pValue <= 1) {
+            setBadgePassed("test_8_indicator");
+        } else {
+            setBadgeFailed("test_8_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
-    let test_9_res = randTest.linearComplexityTest().pValue;
-    setPValue("test_9_value", test_9_res);
-    if (test_9_res >= threshold && test_9_res <= 1) {
-        setBadgePassed("test_9_indicator");
+    let test_9_res = randTest.linearComplexityTest();
+    if (test_9_res.isError) {
+        setBadgeError("test_9_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_9_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_9_value", test_9_res.pValue);
+        if (test_9_res.pValue >= threshold && test_9_res.pValue <= 1) {
+            setBadgePassed("test_9_indicator");
+        } else {
+            setBadgeFailed("test_9_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
     let test_10_res = randTest.serialTest();
-    setPValue("test_10_valueP1", "P-value 1: " + test_10_res.pValue1);
-    setPValue("test_10_valueP2", "P-value 2: " + test_10_res.pValue2);
-    if (test_10_res.pValue1 >= threshold && test_10_res.pValue2 >= threshold && !test_10_res.pValueOutOfRange) {
-        setBadgePassed("test_10_indicator");
+    if (test_10_res.isError) {
+        setBadgeError("test_10_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_10_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_10_valueP1", "P-value 1: " + test_10_res.pValue1);
+        setPValue("test_10_valueP2", "P-value 2: " + test_10_res.pValue2);
+        if (test_10_res.pValue1 >= threshold && test_10_res.pValue2 >= threshold && !test_10_res.pValueOutOfRange) {
+            setBadgePassed("test_10_indicator");
+        } else {
+            setBadgeFailed("test_10_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
-    let test_11_res = randTest.approximateEntropyTest().pValue;
-    setPValue("test_11_value", test_11_res);
-    if (test_11_res >= threshold && test_11_res <= 1) {
-        setBadgePassed("test_11_indicator");
+    let test_11_res = randTest.approximateEntropyTest();
+    if (test_11_res.isError) {
+        setBadgeError("test_11_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_11_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_11_value", test_11_res.pValue);
+        if (test_11_res.pValue >= threshold && test_11_res.pValue <= 1) {
+            setBadgePassed("test_11_indicator");
+        } else {
+            setBadgeFailed("test_11_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
     let test_12_res = randTest.cumulativeSumsTest();
-    setPValue("test_12_valuePFWD", "P-value Forward: " + test_12_res.pValueFWD);
-    setPValue("test_12_valuePREV", "P-value Reverse: " + test_12_res.pValueREV);
-    if (test_12_res.pValueFWD >= threshold && test_12_res.pValueREV >= threshold && !test_12_res.pValueOutOfRange) {
-        setBadgePassed("test_12_indicator");
+    if (test_12_res.isError) {
+        setBadgeError("test_12_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_12_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_12_valuePFWD", "P-value Forward: " + test_12_res.pValueFWD);
+        setPValue("test_12_valuePREV", "P-value Reverse: " + test_12_res.pValueREV);
+        if (test_12_res.pValueFWD >= threshold && test_12_res.pValueREV >= threshold && !test_12_res.pValueOutOfRange) {
+            setBadgePassed("test_12_indicator");
+        } else {
+            setBadgeFailed("test_12_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
     let test_13_res = randTest.randomExcursionsTest();
-    setPValue("test_13_value", test_13_res.minPValue);
-    if (test_13_res.minPValue >= threshold && !test_13_res.pValueOutOfRange) {
-        setBadgePassed("test_13_indicator");
+    if (test_13_res.isError) {
+        setBadgeError("test_13_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_13_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_13_value", test_13_res.minPValue);
+        if (test_13_res.minPValue >= threshold && !test_13_res.pValueOutOfRange) {
+            setBadgePassed("test_13_indicator");
+        } else {
+            setBadgeFailed("test_13_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
 
     let test_14_res = randTest.randomExcursionsVariantTest();
-    setPValue("test_14_value", test_14_res.minPValue);
-    if (test_14_res.minPValue >= threshold && !test_14_res.pValueOutOfRange) {
-        setBadgePassed("test_14_indicator");
+    if (test_14_res.isError) {
+        setBadgeError("test_14_indicator");
+        if (stopIfError) { return; }
     } else {
-        setBadgeFailed("test_14_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_14_value", test_14_res.minPValue);
+        if (test_14_res.minPValue >= threshold && !test_14_res.pValueOutOfRange) {
+            setBadgePassed("test_14_indicator");
+        } else {
+            setBadgeFailed("test_14_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     return isOneTestFailed;
