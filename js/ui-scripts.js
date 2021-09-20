@@ -102,14 +102,18 @@ async function executeTests(array) {
     let stopIfFailed = false;
     let isOneTestFailed = false;
 
-    let test_1_res = randTest.frequencyTest().pValue;
-    setPValue("test_1_value", test_1_res);
-    if (test_1_res >= threshold && test_1_res <= 1) {
-        setBadgePassed("test_1_indicator");
+    let test_1_res = randTest.frequencyTest();
+    if (test_1_res.isError) {
+        setBadgeError("test_1_indicator");
     } else {
-        setBadgeFailed("test_1_indicator");
-        isOneTestFailed = true;
-        if (stopIfFailed) { return; }
+        setPValue("test_1_value", test_1_res.pValue);
+        if (test_1_res.pValue >= threshold && test_1_res.pValue <= 1) {
+            setBadgePassed("test_1_indicator");
+        } else {
+            setBadgeFailed("test_1_indicator");
+            isOneTestFailed = true;
+            if (stopIfFailed) { return; }
+        }
     }
 
     await sleep(300);
@@ -339,6 +343,12 @@ function setBadgePassed(badgeID) {
 
 function setBadgeFailed(badgeID) {
     $("#" + badgeID).text("Failed");
+    $("#" + badgeID).removeClass("badge-secondary badge-success");
+    $("#" + badgeID).addClass("badge-danger");
+}
+
+function setBadgeError(badgeID) {
+    $("#" + badgeID).text("Error");
     $("#" + badgeID).removeClass("badge-secondary badge-success");
     $("#" + badgeID).addClass("badge-danger");
 }
