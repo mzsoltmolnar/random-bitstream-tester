@@ -56,6 +56,7 @@ function insertManualInput() {
 }
 
 function startTests() {
+    resetIndicators();
     executeTests(preprocessor.array);
 }
 
