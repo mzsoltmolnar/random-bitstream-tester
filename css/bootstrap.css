@@ -5209,6 +5209,11 @@ a.badge-warning:focus, a.badge-warning.focus {
   background-color: #dc3545;
 }
 
+.badge-error {
+  color: #fff;
+  background-color: #e6d419;
+}
+
 a.badge-danger:hover, a.badge-danger:focus {
   color: #fff;
   background-color: #bd2130;

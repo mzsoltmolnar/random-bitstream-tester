@@ -70,6 +70,16 @@ h3 {
     margin-bottom: 16px;
 }
 
+#LoadFromFileConfirm{
+    margin-left: 16px;
+    margin-bottom: 16px;
+}
+
+#LoadFromFile{
+    margin-left: 16px;
+    margin-bottom: 16px;
+}
+
 #manualRandNumbersText {
     margin: 16px;
     width: 100%;

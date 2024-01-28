@@ -1,6 +1,7 @@
 $("#radRNG").change(bitstreamInputChanged);
 $("#adcRNG").change(bitstreamInputChanged);
 $("#pseudoRNG").change(bitstreamInputChanged);
+$("#fileRNG").change(bitstreamInputChanged);
 $("#manualRNG").change(bitstreamInputChanged);
 
 $("#copyBitstreamToClipboard").on("click", copyBitstreamToClipboard);
@@ -8,6 +9,7 @@ $("#copyBitstreamToClipboard").on("click", copyBitstreamToClipboard);
 $("#insertRadRandNum").on("click", insertRadRandNum);
 $("#insertAdcRandNum").on("click", insertAdcRandNum);
 $("#generateRandNum").on("click", generateRandNum);
+$("#LoadFromFileConfirm").on("click", loadFromFile);
 $("#insertManualInput").on("click", insertManualInput);
 
 $("#startTest").on("click", startTests);
@@ -47,6 +49,28 @@ function generateRandNum() {
     $("#pureInputBits").html(preprocessor.sequenceString);
 }
 
+function loadFromFile() {
+    var reader = new FileReader();
+    
+    console.log("loadFromFile");
+    resetInputStreamIndicator();
+    resetTestIndicators();
+    
+    reader.onload = function (e) {
+        console.log("onload");
+        var contents = e.target.result;
+        preprocessor = new SequencePreprocessor(contents);
+        $("#pureInputBits").html(preprocessor.sequenceString);
+    }
+
+    
+    let file = $("#LoadFromFile").prop('files')[0];
+    reader.readAsText(file);
+    console.log(file);
+
+}
+
+
 function insertManualInput() {
     resetInputStreamIndicator();
     resetTestIndicators();
@@ -85,6 +109,12 @@ function bitstreamInputChanged() {
         $("#pseudoRNGCollapse").show(250);
     } else {
         $("#pseudoRNGCollapse").hide(250);
+    }
+
+    if (selectedInput === "fileRNG") {
+        $("#LoadFromFileCollapse").show(250);
+    } else {
+        $("#LoadFromFileCollapse").hide(250);
     }
 
     if (selectedInput === "manualRNG") {
@@ -420,7 +450,7 @@ function setPValue(badgeID, value) {
 
 function setBadgeNA(badgeID) {
     $("#" + badgeID).text("N / A");
-    $("#" + badgeID).removeClass("badge-success badge-danger");
+    $("#" + badgeID).removeClass("badge-success badge-danger badge-error");
     $("#" + badgeID).addClass("badge-secondary");
 }
 
@@ -439,7 +469,7 @@ function setBadgeFailed(badgeID) {
 function setBadgeError(badgeID) {
     $("#" + badgeID).text("Error");
     $("#" + badgeID).removeClass("badge-secondary badge-success");
-    $("#" + badgeID).addClass("badge-danger");
+    $("#" + badgeID).addClass("badge-error");
 }
 
 

@@ -73,8 +73,14 @@
                         <button id="generateRandNum" type="button" class="btn btn-success">Insert Input Bitstream</button>
                     </div>
 
+                    <input type="radio" id="fileRNG" name="bitstreamInput" value="fileRNG">
+                    <label for="fileRNG">Load from file</label><br>
+                    <div id="LoadFromFileCollapse" class="collapse">
+                        <input type="file" id="LoadFromFile" class="file-intput" accept=".txt">
+                        <button id="LoadFromFileConfirm" type="button" class="btn btn-success">Load from file</button>
+                    </div>
+                    
                     <input type="radio" id="manualRNG" name="bitstreamInput" value="manualRNG">
-
                     <label for="manualRNG">Manual bitstream input</label><br>
                     <div id="manualRandNumbersTextCollapse" class="collapse">
                         <input type="text" class="form-control" id="manualRandNumbersText" placeholder="Only 0 and 1, ex.: 101010111001001">
