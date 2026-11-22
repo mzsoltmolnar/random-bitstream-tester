@@ -1183,7 +1183,7 @@ class RandomTests {
             sum1 -= MathFunc.normal(((4 * k - 1) * zrev) / Math.sqrt(n));
         }
         sum2 = 0.0;
-        for (k = Math.trunc((Math.trunc(-n / zrev)) - 3) / 4; k <= Math.trunc((Math.trunc(n / zrev) - 1) / 4); k++) {
+        for (k = Math.trunc((Math.trunc(-n / zrev) - 3) / 4); k <= Math.trunc((Math.trunc(n / zrev) - 1) / 4); k++) {
             sum2 += MathFunc.normal(((4 * k + 3) * zrev) / Math.sqrt(n));
             sum2 -= MathFunc.normal(((4 * k + 1) * zrev) / Math.sqrt(n));
         }
