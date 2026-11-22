@@ -57,19 +57,21 @@
                 <div class="col-4">
                     <input type="radio" id="radRNG" name="bitstreamInput" value="radRNG">
                     <label for="radRNG">Radioactive decay RNG</label><br>
-                    <div id="insertRadRNGCollapse" class="collapse">
+                    <div id="insertRadRNGCollapse" class="collapse input-panel">
+                        <p class="input-help">A fixed recording of 1,000,000 bits from a Geiger counter. Its length cannot be changed because it is recorded data, and 1,000,000 bits is the length every test can run on. It has only 22 random-walk cycles, so tests 14 and 15 cannot run on it.</p>
                         <button id="insertRadRandNum" type="button" class="btn btn-success input-control">Insert Input Bitstream</button>
                     </div>
 
                     <input type="radio" id="adcRNG" name="bitstreamInput" value="adcRNG">
                     <label for="adcRNG">ADC noise RNG</label><br>
-                    <div id="insertAdcRNGCollapse" class="collapse">
+                    <div id="insertAdcRNGCollapse" class="collapse input-panel">
+                        <p class="input-help">A fixed recording of 1,000,000 bits of noise from an Arduino analog-to-digital converter. Its length cannot be changed because it is recorded data, and 1,000,000 bits is the length every test can run on. It has 402 random-walk cycles, short of the 500 that tests 14 and 15 need.</p>
                         <button id="insertAdcRandNum" type="button" class="btn btn-success input-control">Insert Input Bitstream</button>
                     </div>
 
                     <input type="radio" id="pseudoRNG" name="bitstreamInput" value="pseudoRNG">
                     <label for="pseudoRNG">JavaScript pseudo RNG</label><br>
-                    <div id="pseudoRNGCollapse" class="collapse generator-panel">
+                    <div id="pseudoRNGCollapse" class="collapse input-panel">
                         <div class="bit-count input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <button type="button" class="btn btn-outline-secondary input-control bit-step" data-dir="-1" aria-label="Fewer bits">−</button>
@@ -95,8 +97,8 @@
 
                     <input type="radio" id="constRNG" name="bitstreamInput" value="constRNG">
                     <label for="constRNG">Mathematical constant (NIST reference)</label><br>
-                    <div id="constantCollapse" class="collapse generator-panel">
-                        <p class="constant-help">The binary expansions NIST uses as reference data, computed in your browser. At 1,000,000 bits they have enough random-walk cycles for tests 14 and 15.</p>
+                    <div id="constantCollapse" class="collapse input-panel">
+                        <p class="input-help">The binary expansions NIST uses as reference data, computed in your browser. At 1,000,000 bits they have enough random-walk cycles for tests 14 and 15.</p>
                         <select id="constantSelect" class="custom-select custom-select-sm input-control constant-select" aria-label="Constant">
                             <option value="pi">π (pi)</option>
                             <option value="sqrt2">√2</option>

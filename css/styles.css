@@ -55,21 +55,6 @@ h3 {
     width: 100px;
 }
 
-#insertRadRandNum {
-    margin-left: 16px;
-    margin-bottom: 16px;
-}
-
-#insertAdcRandNum {
-    margin-left: 16px;
-    margin-bottom: 16px;
-}
-
-#generateRandNum {
-    margin-left: 16px;
-    margin-bottom: 16px;
-}
-
 #manualRandNumbersText {
     margin: 16px;
     width: 100%;
@@ -90,18 +75,14 @@ h3 {
     padding: 10px;
 }
 
-/* ---- Online generators (pseudo RNG, mathematical constants) ---- */
+/* ---- Input panels (recorded streams and online generators) ---- */
 
-.generator-panel {
+.input-panel {
     margin-left: 16px;
     margin-bottom: 16px;
 }
 
-.generator-panel #generateRandNum {
-    margin: 0;
-}
-
-.constant-help {
+.input-help {
     font-size: 14px;
     color: #555;
     margin-bottom: 8px;
