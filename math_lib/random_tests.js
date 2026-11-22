@@ -152,7 +152,7 @@ class RandomTests {
                 vObs++;
             }
         }
-        let tempValue = MathFunc.abs((vObs - 2 * n * piObs * (1 - piObs))) / (2 * piObs * (1 - piObs) * Math.sqrt(2 * n));
+        let tempValue = Math.abs((vObs - 2 * n * piObs * (1 - piObs))) / (2 * piObs * (1 - piObs) * Math.sqrt(2 * n));
         let pValue = MathFunc.erfc(tempValue);
 
         let pValueOutOfRange = false;
