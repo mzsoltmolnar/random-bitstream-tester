@@ -199,7 +199,7 @@ async function executeTests(array) {
 
     await sleep(300);
 
-    let test_6_res = randTest.nonOverlappingTemplateMatchingsTest();
+    let test_6_res = randTest.dftSpectralTest();
     if (test_6_res.isError) {
         setBadgeError("test_6_indicator");
         failedTestCount++;
@@ -217,7 +217,7 @@ async function executeTests(array) {
 
     await sleep(300);
 
-    let test_7_res = randTest.overlappingTemplateMatchingTest();
+    let test_7_res = randTest.nonOverlappingTemplateMatchingsTest();
     if (test_7_res.isError) {
         setBadgeError("test_7_indicator");
         failedTestCount++;
@@ -235,7 +235,7 @@ async function executeTests(array) {
 
     await sleep(300);
 
-    let test_8_res = randTest.universalMaurerTest();
+    let test_8_res = randTest.overlappingTemplateMatchingTest();
     if (test_8_res.isError) {
         setBadgeError("test_8_indicator");
         failedTestCount++;
@@ -253,7 +253,7 @@ async function executeTests(array) {
 
     await sleep(300);
 
-    let test_9_res = randTest.linearComplexityTest();
+    let test_9_res = randTest.universalMaurerTest();
     if (test_9_res.isError) {
         setBadgeError("test_9_indicator");
         failedTestCount++;
@@ -271,15 +271,14 @@ async function executeTests(array) {
 
     await sleep(300);
 
-    let test_10_res = randTest.serialTest();
+    let test_10_res = randTest.linearComplexityTest();
     if (test_10_res.isError) {
         setBadgeError("test_10_indicator");
         failedTestCount++;
         if (stopIfError) { return; }
     } else {
-        setPValue("test_10_valueP1", "P-value 1: " + test_10_res.pValue1);
-        setPValue("test_10_valueP2", "P-value 2: " + test_10_res.pValue2);
-        if (test_10_res.pValue1 >= threshold && test_10_res.pValue2 >= threshold && !test_10_res.pValueOutOfRange) {
+        setPValue("test_10_value", test_10_res.pValue);
+        if (test_10_res.pValue >= threshold && test_10_res.pValue <= 1 && !test_10_res.pValueOutOfRange) {
             setBadgePassed("test_10_indicator");
         } else {
             setBadgeFailed("test_10_indicator");
@@ -290,14 +289,15 @@ async function executeTests(array) {
 
     await sleep(300);
 
-    let test_11_res = randTest.approximateEntropyTest();
+    let test_11_res = randTest.serialTest();
     if (test_11_res.isError) {
         setBadgeError("test_11_indicator");
         failedTestCount++;
         if (stopIfError) { return; }
     } else {
-        setPValue("test_11_value", test_11_res.pValue);
-        if (test_11_res.pValue >= threshold && test_11_res.pValue <= 1 && !test_11_res.pValueOutOfRange) {
+        setPValue("test_11_valueP1", "P-value 1: " + test_11_res.pValue1);
+        setPValue("test_11_valueP2", "P-value 2: " + test_11_res.pValue2);
+        if (test_11_res.pValue1 >= threshold && test_11_res.pValue2 >= threshold && !test_11_res.pValueOutOfRange) {
             setBadgePassed("test_11_indicator");
         } else {
             setBadgeFailed("test_11_indicator");
@@ -308,15 +308,14 @@ async function executeTests(array) {
 
     await sleep(300);
 
-    let test_12_res = randTest.cumulativeSumsTest();
+    let test_12_res = randTest.approximateEntropyTest();
     if (test_12_res.isError) {
         setBadgeError("test_12_indicator");
         failedTestCount++;
         if (stopIfError) { return; }
     } else {
-        setPValue("test_12_valuePFWD", "P-value Forward: " + test_12_res.pValueFWD);
-        setPValue("test_12_valuePREV", "P-value Reverse: " + test_12_res.pValueREV);
-        if (test_12_res.pValueFWD >= threshold && test_12_res.pValueREV >= threshold && !test_12_res.pValueOutOfRange) {
+        setPValue("test_12_value", test_12_res.pValue);
+        if (test_12_res.pValue >= threshold && test_12_res.pValue <= 1 && !test_12_res.pValueOutOfRange) {
             setBadgePassed("test_12_indicator");
         } else {
             setBadgeFailed("test_12_indicator");
@@ -327,14 +326,15 @@ async function executeTests(array) {
 
     await sleep(300);
 
-    let test_13_res = randTest.randomExcursionsTest();
+    let test_13_res = randTest.cumulativeSumsTest();
     if (test_13_res.isError) {
         setBadgeError("test_13_indicator");
         failedTestCount++;
         if (stopIfError) { return; }
     } else {
-        setPValue("test_13_value", test_13_res.minPValue);
-        if (test_13_res.minPValue >= threshold && !test_13_res.pValueOutOfRange) {
+        setPValue("test_13_valuePFWD", "P-value Forward: " + test_13_res.pValueFWD);
+        setPValue("test_13_valuePREV", "P-value Reverse: " + test_13_res.pValueREV);
+        if (test_13_res.pValueFWD >= threshold && test_13_res.pValueREV >= threshold && !test_13_res.pValueOutOfRange) {
             setBadgePassed("test_13_indicator");
         } else {
             setBadgeFailed("test_13_indicator");
@@ -345,7 +345,7 @@ async function executeTests(array) {
 
     await sleep(300);
 
-    let test_14_res = randTest.randomExcursionsVariantTest();
+    let test_14_res = randTest.randomExcursionsTest();
     if (test_14_res.isError) {
         setBadgeError("test_14_indicator");
         failedTestCount++;
@@ -356,6 +356,24 @@ async function executeTests(array) {
             setBadgePassed("test_14_indicator");
         } else {
             setBadgeFailed("test_14_indicator");
+            failedTestCount++;
+            if (stopIfFailed) { return; }
+        }
+    }
+
+    await sleep(300);
+
+    let test_15_res = randTest.randomExcursionsVariantTest();
+    if (test_15_res.isError) {
+        setBadgeError("test_15_indicator");
+        failedTestCount++;
+        if (stopIfError) { return; }
+    } else {
+        setPValue("test_15_value", test_15_res.minPValue);
+        if (test_15_res.minPValue >= threshold && !test_15_res.pValueOutOfRange) {
+            setBadgePassed("test_15_indicator");
+        } else {
+            setBadgeFailed("test_15_indicator");
             failedTestCount++;
             if (stopIfFailed) { return; }
         }
@@ -397,21 +415,24 @@ function resetTestIndicators() {
     setPValue("test_9_value", "");
 
     setBadgeNA("test_10_indicator");
-    setPValue("test_10_valueP1", "");
-    setPValue("test_10_valueP2", "");
+    setPValue("test_10_value", "");
 
     setBadgeNA("test_11_indicator");
-    setPValue("test_11_value", "");
+    setPValue("test_11_valueP1", "");
+    setPValue("test_11_valueP2", "");
 
     setBadgeNA("test_12_indicator");
-    setPValue("test_12_valuePFWD", "");
-    setPValue("test_12_valuePREV", "");
+    setPValue("test_12_value", "");
 
     setBadgeNA("test_13_indicator");
-    setPValue("test_13_value", "");
+    setPValue("test_13_valuePFWD", "");
+    setPValue("test_13_valuePREV", "");
 
     setBadgeNA("test_14_indicator");
     setPValue("test_14_value", "");
+
+    setBadgeNA("test_15_indicator");
+    setPValue("test_15_value", "");
 }
 
 function setPValue(badgeID, value) {

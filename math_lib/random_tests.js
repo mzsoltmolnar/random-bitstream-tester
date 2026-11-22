@@ -390,70 +390,66 @@ class RandomTests {
     }
 
     // -------------------------------------------- dftSpectralTest
-    // dftSpectralTest() {
-    //     let pValue, upperBound, percentile, N_l, N_o, d, * m = NULL, X = [], * wsave = NULL;
-    //     let i, count, ifac[15];
+    dftSpectralTest() {
+        let n = this.randomBinSequence.length;
 
-    //     if (((X = (double *) calloc(n, sizeof(double))) == NULL) ||
-    //         ((wsave = (double *)calloc(2 * n, sizeof(double))) == NULL) ||
-    //             ((m = (double *)calloc(n / 2 + 1, sizeof(double))) == NULL) ) {
-    //         fprintf(stats[7], "\t\tUnable to allocate working arrays for the DFT.\n");
-    //         if (X !== NULL)
-    //             free(X);
-    //         if (wsave !== NULL)
-    //             free(wsave);
-    //         if (m !== NULL)
-    //             free(m);
-    //         return;
-    //     }
-    //     for (i = 0; i < n; i++)
-    //         X[i] = 2 * (int)epsilon[i] - 1;
+        if (n < 1000) {
+            console.warn("Sequence is too short. A minimum length of 1000 bit is needed.");
+            return {
+                name: this.dftSpectralTest.name,
+                pValue: 0.0,
+                n: n,
+                percentile: 0.0,
+                N_l: 0,
+                N_o: 0.0,
+                d: 0.0,
+                pValueOutOfRange: false,
+                isError: true
+            };
+        }
 
-    //     __ogg_fdrffti(n, wsave, ifac);		/* INITIALIZE WORK ARRAYS */
-    //     __ogg_fdrfftf(n, X, wsave, ifac);	/* APPLY FORWARD FFT */
+        let X_re = new Float64Array(n);
+        let X_im = new Float64Array(n);
+        for (let i = 0; i < n; i++) {
+            X_re[i] = 2 * this.randomBinSequence[i] - 1;
+        }
 
-    //     m[0] = sqrt(X[0] * X[0]);	    /* COMPUTE MAGNITUDE */
+        FFT.forward(X_re, X_im);                            /* APPLY FORWARD FFT */
 
-    //     for (i = 0; i < n / 2; i++)
-    //         m[i + 1] = sqrt(pow(X[2 * i + 1], 2) + pow(X[2 * i + 2], 2));
-    //     count = 0;				       /* CONFIDENCE INTERVAL */
-    //     upperBound = sqrt(2.995732274 * n);
-    //     for (i = 0; i < n / 2; i++)
-    //         if (m[i] < upperBound)
-    //             count++;
-    //     percentile = (double)count / (n / 2) * 100;
-    //     N_l = (double) count;       /* number of peaks less than h = sqrt(3*n) */
-    //     N_o = (double) 0.95 * n / 2.0;
-    //     d = (N_l - N_o) / sqrt(n / 4.0 * 0.95 * 0.05);
-    //     pValue = erfc(fabs(d) / sqrt(2.0));
+        /* COUNT THE MODULI OF THE FIRST n/2 COEFFICIENTS (INCLUDING k = 0) BELOW THE 95% PEAK HEIGHT THRESHOLD */
+        let half = Math.trunc(n / 2);
+        let upperBound = Math.sqrt(2.995732274 * n);
+        let count = 0;
+        for (let k = 0; k < half; k++) {
+            let modulus = Math.sqrt(Math.pow(X_re[k], 2) + Math.pow(X_im[k], 2));
+            if (modulus < upperBound) {
+                count++;
+            }
+        }
+        let percentile = count / half * 100;
+        let N_l = count;                                    /* number of peaks less than the threshold */
+        let N_o = 0.95 * n / 2.0;                           /* expected number of peaks less than the threshold */
+        let d = (N_l - N_o) / Math.sqrt(n / 4.0 * 0.95 * 0.05);
+        let pValue = MathFunc.erfc(Math.abs(d) / Math.sqrt(2.0));
 
-    //     fprintf(stats[TEST_FFT], "\t\t\t\tFFT TEST\n");
-    //     fprintf(stats[TEST_FFT], "\t\t-------------------------------------------\n");
-    //     fprintf(stats[TEST_FFT], "\t\tCOMPUTATIONAL INFORMATION:\n");
-    //     fprintf(stats[TEST_FFT], "\t\t-------------------------------------------\n");
-    //     fprintf(stats[TEST_FFT], "\t\t(a) Percentile = %f\n", percentile);
-    //     fprintf(stats[TEST_FFT], "\t\t(b) N_l        = %f\n", N_l);
-    //     fprintf(stats[TEST_FFT], "\t\t(c) N_o        = %f\n", N_o);
-    //     fprintf(stats[TEST_FFT], "\t\t(d) d          = %f\n", d);
-    //     fprintf(stats[TEST_FFT], "\t\t-------------------------------------------\n");
-
-    //     fprintf(stats[TEST_FFT], "%s\t\tp_value = %f\n\n", pValue < ALPHA ? "FAILURE" : "SUCCESS", pValue);
-    //     fprintf(results[TEST_FFT], "%f\n", pValue);
-
-    //     free(X);
-    //     free(wsave);
-    //     free(m);
-
-
-    //     result = {
-    //         name: this.dftSpectralTest.name,
-    //         pValue: pValue,
-    //         n: n,
-    //         chiSqr: chiSqr
-    //     };
-    //     console.log(result);
-    //     return result;
-    // }
+        let pValueOutOfRange = false;
+        if (pValue < 0 || pValue > 1) {
+            pValueOutOfRange = true;
+        }
+        let result = {
+            name: this.dftSpectralTest.name,
+            pValue: pValue,
+            n: n,
+            percentile: percentile,
+            N_l: N_l,
+            N_o: N_o,
+            d: d,
+            pValueOutOfRange: pValueOutOfRange,
+            isError: false
+        };
+        console.log(result);
+        return result;
+    }
 
     // -------------------------------------------- OverlappingTemplateMatchingTest
     nonOverlappingTemplateMatchingsTest() {
