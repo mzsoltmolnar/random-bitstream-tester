@@ -174,7 +174,7 @@
             <hr>
             <div class="row normal-text">
                 <div class="col-6">
-                    <p>6. Non-overlapping Template Matching Test</p>
+                    <p>6. Discrete Fourier Transform (Spectral) Test</p>
                 </div>
                 <div class="col-3 text-center">
                     <p id="test_6_value"></p>
@@ -186,10 +186,11 @@
             <hr>
             <div class="row normal-text">
                 <div class="col-6">
-                    <p>7. Overlapping Template Matching Test</p>
+                    <p>7. Non-overlapping Template Matching Test</p>
                 </div>
                 <div class="col-3 text-center">
-                    <p id="test_7_value"></p>
+                    <p id="test_7_valueMin"></p><br>
+                    <p id="test_7_valueCount"></p>
                 </div>
                 <div class="col-3 text-center">
                     <span id="test_7_indicator" class="badge badge-pill badge-secondary">N / A</span>
@@ -198,7 +199,7 @@
             <hr>
             <div class="row normal-text">
                 <div class="col-6">
-                    <p>8. Maurer’s “Universal Statistical” Test</p>
+                    <p>8. Overlapping Template Matching Test</p>
                 </div>
                 <div class="col-3 text-center">
                     <p id="test_8_value"></p>
@@ -210,7 +211,7 @@
             <hr>
             <div class="row normal-text">
                 <div class="col-6">
-                    <p>9. Linear Complexity Test</p>
+                    <p>9. Maurer’s “Universal Statistical” Test</p>
                 </div>
                 <div class="col-3 text-center">
                     <p id="test_9_value"></p>
@@ -222,11 +223,10 @@
             <hr>
             <div class="row normal-text">
                 <div class="col-6">
-                    <p>10. Serial Test</p>
+                    <p>10. Linear Complexity Test</p>
                 </div>
                 <div class="col-3 text-center">
-                    <p id="test_10_valueP1"></p><br>
-                    <p id="test_10_valueP2"></p>
+                    <p id="test_10_value"></p>
                 </div>
                 <div class="col-3 text-center">
                     <span id="test_10_indicator" class="badge badge-pill badge-secondary">N / A</span>
@@ -235,10 +235,11 @@
             <hr>
             <div class="row normal-text">
                 <div class="col-6">
-                    <p>11. Approximate Entropy Test</p>
+                    <p>11. Serial Test</p>
                 </div>
                 <div class="col-3 text-center">
-                    <p id="test_11_value"></p>
+                    <p id="test_11_valueP1"></p><br>
+                    <p id="test_11_valueP2"></p>
                 </div>
                 <div class="col-3 text-center">
                     <span id="test_11_indicator" class="badge badge-pill badge-secondary">N / A</span>
@@ -247,11 +248,10 @@
             <hr>
             <div class="row normal-text">
                 <div class="col-6">
-                    <p>12. Cumulative Sums (Cusum) Test</p>
+                    <p>12. Approximate Entropy Test</p>
                 </div>
                 <div class="col-3 text-center">
-                    <p id="test_12_valuePFWD"></p><br>
-                    <p id="test_12_valuePREV"></p>
+                    <p id="test_12_value"></p>
                 </div>
                 <div class="col-3 text-center">
                     <span id="test_12_indicator" class="badge badge-pill badge-secondary">N / A</span>
@@ -260,10 +260,11 @@
             <hr>
             <div class="row normal-text">
                 <div class="col-6">
-                    <p>13. Random Excursions Test</p>
+                    <p>13. Cumulative Sums (Cusum) Test</p>
                 </div>
                 <div class="col-3 text-center">
-                    <p id="test_13_value"></p>
+                    <p id="test_13_valuePFWD"></p><br>
+                    <p id="test_13_valuePREV"></p>
                 </div>
                 <div class="col-3 text-center">
                     <span id="test_13_indicator" class="badge badge-pill badge-secondary">N / A</span>
@@ -272,13 +273,25 @@
             <hr>
             <div class="row normal-text">
                 <div class="col-6">
-                    <p>14. Random Excursions Variant Test</p>
+                    <p>14. Random Excursions Test</p>
                 </div>
                 <div class="col-3 text-center">
                     <p id="test_14_value"></p>
                 </div>
                 <div class="col-3 text-center">
                     <span id="test_14_indicator" class="badge badge-pill badge-secondary">N / A</span>
+                </div>
+            </div>
+            <hr>
+            <div class="row normal-text">
+                <div class="col-6">
+                    <p>15. Random Excursions Variant Test</p>
+                </div>
+                <div class="col-3 text-center">
+                    <p id="test_15_value"></p>
+                </div>
+                <div class="col-3 text-center">
+                    <span id="test_15_indicator" class="badge badge-pill badge-secondary">N / A</span>
                 </div>
             </div>
         </div>
@@ -314,6 +327,7 @@
     <script src="math_lib/sequence_preprocessor.js"></script>
     <script src="math_lib/matrix_utils.js"></script>
     <script src="math_lib/math_functions.js"></script>
+    <script src="math_lib/fft.js"></script>
     <script src="math_lib/match_templates.js"></script>
     <script src="math_lib/random_tests.js"></script>
     <script src="js/youtubeApi.js"></script>
