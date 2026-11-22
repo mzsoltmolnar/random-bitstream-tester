@@ -223,8 +223,13 @@ async function executeTests(array) {
         failedTestCount++;
         if (stopIfError) { return; }
     } else {
-        setPValue("test_7_value", test_7_res.pValue);
-        if (test_7_res.pValue >= threshold && test_7_res.pValue <= 1 && !test_7_res.pValueOutOfRange) {
+        // One p-value per template (148 for m = 9). The lowest one is compared with a
+        // Bonferroni-corrected threshold, otherwise a random sequence would fail most of the time.
+        let test_7_threshold = threshold / test_7_res.numOfTemplates;
+        let test_7_passedCount = test_7_res.pValue.filter(p => p >= threshold).length;
+        setPValue("test_7_valueMin", "Lowest P-value: " + test_7_res.minPValue);
+        setPValue("test_7_valueCount", "Templates with P-value ≥ " + threshold + ": " + test_7_passedCount + " / " + test_7_res.numOfTemplates);
+        if (test_7_res.minPValue >= test_7_threshold && !test_7_res.pValueOutOfRange) {
             setBadgePassed("test_7_indicator");
         } else {
             setBadgeFailed("test_7_indicator");
@@ -406,7 +411,8 @@ function resetTestIndicators() {
     setPValue("test_6_value", "");
 
     setBadgeNA("test_7_indicator");
-    setPValue("test_7_value", "");
+    setPValue("test_7_valueMin", "");
+    setPValue("test_7_valueCount", "");
 
     setBadgeNA("test_8_indicator");
     setPValue("test_8_value", "");

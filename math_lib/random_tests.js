@@ -451,7 +451,9 @@ class RandomTests {
         return result;
     }
 
-    // -------------------------------------------- OverlappingTemplateMatchingTest
+    // -------------------------------------------- nonOverlappingTemplateMatchingsTest
+    // Runs one test per aperiodic template of length m (148 templates for m = 9), like NIST STS.
+    // pValue and chiSqr hold one entry per template, in the order of the NIST template file.
     nonOverlappingTemplateMatchingsTest() {
         let n = this.randomBinSequence.length;
         let m = 9; // 9 or 10 - NIST recommendation
@@ -467,7 +469,7 @@ class RandomTests {
         position in the numOfTemplates variable.
         ----------------------------------------------------------------------------*/
         let bit, W_obs, nu = [], Wj = [];
-        let sum, chiSqr, pValue, lambda, pi = [], varWj;
+        let sum, chiSqr = [], pValue = [], lambda, pi = [], varWj;
         let i, j, jj, k, match, SKIP, M, N, K = 5;
         let sequence = [];
 
@@ -475,12 +477,13 @@ class RandomTests {
             console.warn("Sequence is too short. A minimum length of 1000000 bit is needed for this test.");
             return {
                 name: this.nonOverlappingTemplateMatchingsTest.name,
-                pValue: 0.0,
+                pValue: [],
+                minPValue: 0.0,
+                numOfTemplates: 0,
                 n: n,
                 M: 0,
                 N: 0,
-                jj: 0,
-                chiSqr: 0.0,
+                chiSqr: [],
                 pValueOutOfRange: false,
                 isError: true
             };
@@ -496,12 +499,13 @@ class RandomTests {
             console.warn("nonOverlappingTemplateMatchingsTest aborted because lambda is not positive");
             return {
                 name: this.nonOverlappingTemplateMatchingsTest.name,
-                pValue: 0.0,
+                pValue: [],
+                minPValue: 0.0,
+                numOfTemplates: 0,
                 n: n,
                 M: M,
                 N: N,
-                jj: 0,
-                chiSqr: 0.0,
+                chiSqr: [],
                 pValueOutOfRange: false,
                 isError: true
             };
@@ -556,25 +560,32 @@ class RandomTests {
                     Wj[i] = W_obs;
                 }
                 sum = 0;
-                chiSqr = 0.0;                                   /* Compute Chi Square */
+                chiSqr[jj] = 0.0;                               /* Compute Chi Square */
                 for (i = 0; i < N; i++) {
-                    chiSqr += Math.pow((Wj[i] - lambda) / Math.pow(varWj, 0.5), 2);
+                    chiSqr[jj] += Math.pow((Wj[i] - lambda) / Math.pow(varWj, 0.5), 2);
                 }
-                pValue = MathFunc.igamc(N / 2.0, chiSqr / 2.0);
+                pValue[jj] = MathFunc.igamc(N / 2.0, chiSqr[jj] / 2.0);
             }
         }
 
         let pValueOutOfRange = false;
-        if (pValue < 0 || pValue > 1) {
-            pValueOutOfRange = true;
+        let minPValue = Infinity;
+        for (i = 0; i < pValue.length; i++) {
+            if (pValue[i] < 0 || pValue[i] > 1) {
+                pValueOutOfRange = true;
+            }
+            if (pValue[i] < minPValue) {
+                minPValue = pValue[i];
+            }
         }
         let result = {
             name: this.nonOverlappingTemplateMatchingsTest.name,
             pValue: pValue,
+            minPValue: minPValue,
+            numOfTemplates: pValue.length,
             n: n,
             M: M,
             N: N,
-            jj: jj,
             chiSqr: chiSqr,
             pValueOutOfRange: pValueOutOfRange,
             isError: false
