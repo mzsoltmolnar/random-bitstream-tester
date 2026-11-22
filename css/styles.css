@@ -89,3 +89,272 @@ h3 {
     background-color: rgb(247, 247, 247);
     padding: 10px;
 }
+
+/* ---- Online generators (pseudo RNG, mathematical constants) ---- */
+
+.generator-panel {
+    margin-left: 16px;
+    margin-bottom: 16px;
+}
+
+.generator-panel #generateRandNum {
+    margin: 0;
+}
+
+.constant-help {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.constant-select {
+    width: auto;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.bit-count {
+    width: 100%;
+    max-width: 260px;
+    flex-wrap: nowrap;
+}
+
+.bit-count-input {
+    min-width: 0;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.bit-step {
+    width: 34px;
+    font-weight: bold;
+}
+
+.bit-count-hint {
+    font-size: 13px;
+    margin: 4px 0 8px;
+    min-height: 0.5em;
+}
+
+.generator-status {
+    font-size: 14px;
+    margin-top: 8px;
+    min-height: 1.5em;
+}
+
+.input-stats {
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.stat-ok {
+    color: #1e7e34;
+}
+
+.stat-warn {
+    color: #a05a00;
+}
+
+/* ---- Tests toolbar, progress and summary ---- */
+
+.tests-toolbar h3 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.toolbar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px 24px;
+}
+
+.toolbar-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.run-progress {
+    margin-top: 20px;
+}
+
+.run-progress .progress {
+    height: 10px;
+    background-color: #f7f7f7;
+}
+
+.run-progress-label {
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.run-summary {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.summary-hint {
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+/* ---- Test rows ---- */
+
+.test-row p {
+    margin-bottom: 0;
+}
+
+.test-values .value-line {
+    margin: 2px 0;
+    overflow-wrap: anywhere;
+}
+
+.details-toggle {
+    color: #212529;
+    padding: 0;
+    text-align: left;
+    font-size: 16px;
+    border: 0;
+}
+
+.details-toggle:hover,
+.details-toggle:focus {
+    color: #0056b3;
+}
+
+.chevron {
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    margin: 0 10px 0 2px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-45deg);
+    vertical-align: 0.12em;
+    transition: transform 0.15s ease-in-out;
+}
+
+[aria-expanded="true"] > .chevron {
+    transform: rotate(45deg);
+    vertical-align: 0.25em;
+}
+
+.test-row .badge .spinner-border-sm {
+    width: 0.9rem;
+    height: 0.9rem;
+    border-width: 0.15em;
+    vertical-align: -0.1em;
+}
+
+/* ---- Details panel ---- */
+
+.details-panel {
+    margin-top: 12px;
+    padding: 16px 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #c8c8c8;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.details-empty {
+    color: #6c757d;
+    margin: 0;
+}
+
+.details-meta {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.details-alert {
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
+.details-alert ul {
+    margin: 4px 0 0 18px;
+}
+
+.details-note {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.details-table {
+    margin-bottom: 0;
+}
+
+.details-table th {
+    width: 38%;
+    font-weight: normal;
+    color: #333;
+}
+
+.details-table td {
+    overflow-wrap: anywhere;
+}
+
+.field-key {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+/* ---- Array values ---- */
+
+.array-meta {
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 6px;
+}
+
+.value-grid-scroll {
+    max-height: 320px;
+    overflow-y: auto;
+    margin-top: 6px;
+    padding-right: 4px;
+}
+
+.value-chip {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #d6d6d6;
+    border-left: 4px solid #adb5bd;
+    border-radius: 4px;
+    padding: 3px 8px;
+    line-height: 1.3;
+}
+
+.chip-label {
+    font-size: 12px;
+    color: #6c757d;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.chip-value {
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+}
+
+.show-rest {
+    margin-top: 8px;
+}
+
+/* ---- P-value colouring ---- */
+
+span.p-pass { color: #1e7e34; }
+span.p-warn { color: #a05a00; }
+span.p-fail { color: #c82333; font-weight: bold; }
+
+.value-chip.p-pass { border-left-color: #28a745; }
+.value-chip.p-warn { border-left-color: #e0a800; }
+.value-chip.p-fail { border-left-color: #dc3545; }
+.value-chip.p-fail .chip-value { color: #c82333; font-weight: bold; }
+.value-chip.p-warn .chip-value { color: #a05a00; }
